@@ -33,10 +33,21 @@ export default class App extends React.Component {
       completed: false
     };
 
-    this.setState({
-      ...this.state,
-      todos: [...this.state.todos, newTodo]
-    });
+    // this.setState({
+    //   ...this.state,
+    //   todos: [...this.state.todos, newTodo]
+    // });
+
+    axios.post(URL, newTodo)
+    .then(resp => {
+      console.log(resp)
+      const addTodo = {...resp.data.data};
+      this.setState({...this.state, 
+      todos: [...this.state.todos, addTodo]})
+    })
+    .catch(err => {
+      console.error(err);
+    })
   }
 
   handleClear = () => {
