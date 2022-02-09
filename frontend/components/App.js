@@ -1,26 +1,28 @@
 import React from 'react'
 import TodoList from './TodoList';
 import Form from './Form';
+import axios from 'axios';
 
 
+const initialState = {
+  todos: []
+};
+const URL = 'http://localhost:9000/api/todos';
 
 export default class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      todos: [
-        {
-          name: 'Organize Garage',
-          id: 1528817077286, // could look different, you could use a timestamp to generate it
-          completed: false
-        },
-        {
-          name: 'Bake Cookies',
-          id: 1528817084358,
-          completed: false
-        }
-      ]
-    }
+ 
+  state = initialState;
+
+  componentDidMount(){
+    axios.get(URL)
+    .then(res => {
+      console.log(res)
+      this.setState({...this.state, 
+        todos: res.data.data})
+    })
+    .catch(err => {
+      console.error(err)
+    })
   }
 
   handleAdd = (name) => {
