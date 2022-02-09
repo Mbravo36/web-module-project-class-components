@@ -60,6 +60,26 @@ export default class App extends React.Component {
   }
   
   handleToggle = (clickedId) => {
+    // axios.patch(`http://localhost:9000/api/todos/${id}`)
+    // .then(resp => {
+    //    const newState = this.state.todos.map(todo => {
+    //      if (todo.id === clickedId){
+    //        console.log(resp.data.data)
+    //        return resp.data.data
+    //      } else {
+    //       return todo;
+    //      }
+         
+    //    })
+    //    console.log(newState);
+
+    //    this.setState({...this.state, todos: [newState]})
+    // })
+    // .catch(err => {
+    //   console.error(err);
+    // })
+
+    
 
     this.setState({
       ...this.state,
